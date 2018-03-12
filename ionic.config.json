@@ -1,0 +1,8 @@
+{
+  "name": "eateeApp",
+  "app_id": "f8d48bce",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
