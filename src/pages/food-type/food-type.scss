@@ -1,0 +1,52 @@
+page-food-type {
+ion-card {
+    position: relative;
+    text-align: center;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: black;
+  }
+.col-33 {
+  width: 50%;
+  float:left;
+}
+
+.full-image {
+  width: 135px;
+  height: 135px;
+}
+
+.card-description {
+  text-align: center;
+}
+
+.fab[mini] {
+    margin: 8px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.emptyPage{
+    position:absolute;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    top:50%;
+    transform:translateY(-50%);
+}
+}

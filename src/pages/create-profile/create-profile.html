@@ -1,0 +1,45 @@
+<!--
+  Generated template for the CreateProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Create Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="bg-style">
+
+  <button ion-button (click)="changeImage()"><ion-icon name="image"></ion-icon></button> <br>
+  <ion-img *ngIf="imageInserted" width="100" height="100" src="{{myPhotoURL}}"></ion-img>
+
+  <ion-item>
+    <ion-label fixed> Full Name</ion-label>
+    <ion-input type="number" [(ngModel)]="profile.name" required></ion-input> 
+  </ion-item>
+
+  <ion-item>
+    <ion-label><ion-icon class="icon-form" item-left name="phone-portrait"></ion-icon></ion-label>
+    <ion-input type="text" [(ngModel)]="profile.phoneNo" placeholder="Phone No" required></ion-input> 
+  </ion-item>
+
+  <ion-item>
+    <ion-label ><ion-icon class="icon-form" item-left name="transgender"></ion-icon></ion-label>
+    <ion-select type="text" [(ngModel)]="profile.gender" interface="popover">
+      <ion-option value="female">Female</ion-option>
+      <ion-option value="male">Male</ion-option>
+    </ion-select> 
+  </ion-item>
+
+  <ion-item>
+    <ion-label><ion-icon class="icon-form" item-left name="calendar"></ion-icon></ion-label>
+    <ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="profile.birthDate" required></ion-datetime> 
+  </ion-item>
+
+  <ion-item>
+    <ion-label><ion-icon class="icon-form" item-left name="locate"></ion-icon></ion-label>
+    <ion-input type="text" [(ngModel)]="profile.address" placeholder="Address" required></ion-input> 
+  </ion-item>	
+</ion-content>

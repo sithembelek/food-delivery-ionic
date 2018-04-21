@@ -1,0 +1,88 @@
+<!--
+  Generated template for the FoodTypePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="card-background-page" class="bg-style">
+    <ion-item>
+      <ion-label fixed><ion-icon name="pin"></ion-icon> Location</ion-label>
+      <ion-input type="text" [(ngModel)]="autocomplete.query" (input)="updateSearch()"></ion-input> 
+    </ion-item>
+
+
+    <ion-list>
+        <ion-item *ngFor="let item of autocompleteItems" 
+            (click)="chooseItem(item)">
+            {{ item.description }}
+        </ion-item>
+    </ion-list>
+<ion-searchbar
+  [(ngModel)]="myInput"
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="getItems($event)"
+  (ionCancel)="onCancel()">
+</ion-searchbar>
+  <ion-list>
+    <ion-item>
+      <ion-label><ion-icon name="list"></ion-icon> Category</ion-label>
+      <ion-select #category multiple="false" interface="popover" (ionChange)="viewFood(category.value)" >
+        <ion-option value="" selected="true">Select Food Category</ion-option>
+        <ion-option value="fav" >My Favourite</ion-option>
+        <ion-option value="Malaysian Cuisine" >Malaysian Cuisine</ion-option>
+        <ion-option value="Indian Cuisine">Indian Cuisine</ion-option>
+        <ion-option value="Chinese Cuisine">Chinese Cuisine</ion-option>
+        <ion-option value="Western Cuisine">Western Cuisine</ion-option>
+        <ion-option value="Indonesian Cuisine">Indonesian Cuisine</ion-option>
+        <ion-option value="Asian Cuisine">Asian Cuisine</ion-option>
+        <ion-option value="Healthy Food">Healthy Food</ion-option>
+        <ion-option value="Others">Others</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>  
+
+<div *ngIf="emptyData" class="emptyPage">
+  <p style="font-style: italic; color: red; font-size: 15px; padding-right: 30px; padding-left: 30px; text-align: center">There is no Food Delivery Service Provider available</p>
+</div>
+<ion-list *ngFor="let m of menuss" (click)="makeOrder(m.$key,m.fdsp)">
+  <div class="col col-33">
+    <ion-card >
+      <img  class="full-image" src="{{m.photoURL}}"/>
+      <div class="card-description">{{m.menuName}}</div>
+      <ion-row>
+        <button ion-button icon-left clear small>
+          <ion-icon name="pricetag"></ion-icon>
+          <div>RM {{m.menuPrice}}</div>
+        </button>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left clear small>
+            <div *ngIf="checkPreOrder(m.preOrder)"> <ion-icon name="alarm"></ion-icon></div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-right clear small end>
+            <div *ngIf="checkFavourite(m.$key)"> <ion-icon color="primary" name="star"></ion-icon></div> <!---->
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+</ion-list> 
+  <ion-fab right bottom>
+        <button ion-fab full color="primary" (click)="goCart()"><ion-icon name="cart"></ion-icon></button>
+  </ion-fab>
+</ion-content>

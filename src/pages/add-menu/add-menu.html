@@ -1,0 +1,82 @@
+<!--
+  Generated template for the AddMenuPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Add Menu</ion-title>
+      <ion-buttons end>
+          <button ion-button icon-only (click)="addMenu(menu)">
+            <ion-icon name="checkmark"></ion-icon>
+          </button>
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="bg-style">
+<div class="center" text-center>
+  <ion-item-group>
+  <button ion-button (click)="changeImage()"><ion-icon name="image"></ion-icon></button> <br>
+  <ion-img *ngIf="imageInserted" width="100" height="100" src="{{myPhotoURL}}"></ion-img>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="menu.menuName" placeholder="Menu Name"></ion-input> 
+  </ion-item>
+  <br>
+ <ion-item>
+    <ion-textarea [(ngModel)]="menu.desc" placeholder="Menu Description"></ion-textarea> 
+  </ion-item>
+  </ion-item-group>
+  <br><br>
+  <ion-item-group>
+  <ion-list>
+    <ion-item>
+      <ion-label><ion-icon name="list"></ion-icon> Category</ion-label>
+      <ion-select [(ngModel)]="menu.category" interface="popover" multiple="false" cancelText="Cancel" okText="Yes">
+        <ion-option value="Malaysian Cuisine" selected="true">Malaysian Cuisine</ion-option>
+        <ion-option value="Indian Cuisine">Indian Cuisine</ion-option>
+        <ion-option value="Chinese Cuisine">Chinese Cuisine</ion-option>
+        <ion-option value="Western Cuisine">Western Cuisine</ion-option>
+        <ion-option value="Indonesian Cuisine">Indonesian Cuisine</ion-option>
+        <ion-option value="Asian Cuisine">Asian Cuisine</ion-option>
+        <ion-option value="Healthy Food">Healthy Food</ion-option>
+        <ion-option value="Others">Others</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>    
+  </ion-item-group>
+  <ion-item-group>
+  <ion-item>
+    <ion-label fixed><ion-icon name="pricetag"></ion-icon> Price</ion-label>
+    <ion-input type="number" [(ngModel)]="menu.menuPrice"></ion-input> 
+  </ion-item>
+</ion-item-group>
+<ion-item-group>
+  <ion-item-divider color="secondary">Open Order Details</ion-item-divider>
+  <p>You may leave this section empty if this menu is not available for order yet</p>
+    <ion-item>
+      <ion-label fixed>Stock</ion-label>
+      <ion-input type="number" [(ngModel)]="menu.stock"></ion-input> 
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Pre-Order</ion-label>
+      <ion-toggle [(ngModel)]="preOrder" (ionChange)="startpreOrder()"></ion-toggle>
+    </ion-item>
+    <div *ngIf="pre">
+    <ion-item>
+      <ion-label fixed>Delivery Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="menu.date"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Delivery Time</ion-label>
+      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="menu.time"></ion-datetime>
+    </ion-item>
+    </div>
+</ion-item-group>
+</div>
+</ion-content>

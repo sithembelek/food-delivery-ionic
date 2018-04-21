@@ -1,0 +1,55 @@
+<!--
+  Generated template for the RunnerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Runner</ion-title>
+	<ion-buttons end>
+	    <button ion-button icon-only (click)="startRunner(model, colourVehicle, plateNumber)">
+	        <ion-icon name="checkmark"></ion-icon>
+	    </button>
+	</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="bg-style">
+	<ion-list>
+  <ion-item>
+    <ion-label><ion-icon name="pin"></ion-icon>Service Location</ion-label>
+    <ion-select #address [(ngModel)]="locationAddress" multiple="false" interface="popover" (ionChange)="selectAddress(address.value)">
+    	<ion-option value="" selected="true">Select Adress</ion-option>
+    	<ion-option value="addAddress">New Address</ion-option>
+		<ion-option *ngFor = "let loc of locData" value="{{loc.address}}">{{loc.name}}</ion-option>
+    </ion-select> 
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="locationAddress" disabled></ion-input>
+  </ion-item>
+</ion-list>
+	  <br><br>
+  <ion-item-group>
+    <ion-item-divider color="secondary">Vehicle Details</ion-item-divider>
+	  <ion-item>
+	    <ion-label floating><ion-icon name="car"></ion-icon> Vehicle Model</ion-label>
+	    <ion-input type="text" [(ngModel)]="model" required></ion-input> 
+	  </ion-item>
+	  <ion-item>
+	    <ion-label floating><ion-icon name="color-palette"></ion-icon> Vehicle Colour</ion-label>
+	    <ion-input type="text" [(ngModel)]="colourVehicle" required></ion-input> 
+	  </ion-item>
+	  <ion-item>
+	    <ion-label floating><ion-icon name="document"></ion-icon> Registration Plate Number</ion-label>
+	    <ion-input type="text" [(ngModel)]="plateNumber" required></ion-input> 
+	  </ion-item>
+	</ion-item-group>
+	<div *ngIf="trueRunner">
+		<ion-fab center bottom>
+	      	<button ion-fab full color="primary" (click)="powerOff()"><ion-icon name="power"></ion-icon></button>
+		</ion-fab>
+	</div>
+</ion-content>

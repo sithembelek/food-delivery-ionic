@@ -1,0 +1,89 @@
+<!--
+  Generated template for the ManageDeliveryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Manage Delivery</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="bg-style">
+    <ion-list>
+      <ion-item>
+          <ion-label><ion-icon name="list"></ion-icon>Status</ion-label>
+          <ion-select #delivery multiple="false" interface="popover" (ionChange)="viewDelivery(delivery.value)" >
+            <ion-option value="all" selected="true">Display All</ion-option>
+            <ion-option value="new" >New Delivery</ion-option>
+            <ion-option value="pud" >Pick-up Delivery</ion-option>
+            <ion-option value="d" >Delivery</ion-option>
+            <ion-option value="completed">Completed Delivery</ion-option>
+          </ion-select>
+      </ion-item>
+  </ion-list>
+    <div *ngIf="viewNew" text-center>
+      <ion-item-group>
+        <ion-item-divider color="light">New Delivery</ion-item-divider>
+        <ion-card  *ngFor="let d of newD" (click)="startDelivery()">
+          <ion-item>
+            <ion-row>
+              <ion-col>
+                <h6>Customer</h6>
+              </ion-col>
+              <ion-col>
+                {{d.customerName}}
+                {{d.customerPhoneNo}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <h6>FDSP</h6>
+              </ion-col>
+              <ion-col>
+                {{d.fdspName}}
+                {{d.fdspPhoneNo}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <h6>Order</h6>
+              </ion-col>
+              <ion-col>
+                {{d.menuName}}
+                RM {{d.totalPrice}}
+              </ion-col>
+            </ion-row>
+            </ion-item>
+      </ion-card>
+    </ion-item-group>
+  </div>
+    <div *ngIf="viewCompleted">
+      <ion-item-group>
+        <ion-item-divider color="light">Completed Delivery</ion-item-divider>
+        <ion-card >
+          <ion-item *ngFor="let d of completedD" (click)="action(order.$key, order.status, order.customer, order.orderID)">
+            <ion-row>
+              <ion-col>
+                <img  class="full-image" src="{{order.menuPhoto}}"/>
+              </ion-col>
+              <ion-col>
+                  <div class="card-description" style="font-weight: bold">{{order.menuName}}</div>
+                  <button ion-button icon-left clear small>
+                    <ion-icon name="pricetag"></ion-icon>
+                    <div>Total: RM {{order.totalPrice}}</div>
+                  </button>
+                </ion-col>
+            </ion-row>
+            </ion-item>
+      </ion-card>
+    </ion-item-group>
+  </div>
+</ion-content>

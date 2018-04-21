@@ -1,0 +1,27 @@
+<ion-header>
+</ion-header>
+
+<ion-content style="background-color: transparent">
+	<div #map id="my-map" style="height: 100%"></div>
+</ion-content>
+
+<ion-footer class="bg-style" style="padding-left: 20px; padding-right: 20px; text-align: center">
+	<h6>Runner Data</h6>
+	<div class="buttonRow">
+		<ion-row>
+		  	<ion-col width-50>
+		    	<img class="circle-pic" alt="logo"  src="{{(profileData | async)?.photoURL}}">
+		  	</ion-col>
+		  	<ion-col width-50>
+		  		<ion-row></ion-row>
+		  		<ion-row></ion-row>
+				<ion-row>
+					<div>{{(profileData | async)?.name}}</div><br>
+					<div>{{(profileData | async)?.phoneNo}}</div><br><br>
+					<div>{{(profileData | async)?.vehicle}}</div><br>
+					<div>{{(profileData | async)?.plateNumber}}</div>						
+				</ion-row>
+		  	</ion-col>
+		</ion-row>
+	</div>
+</ion-footer>

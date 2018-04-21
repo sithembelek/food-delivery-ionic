@@ -1,0 +1,116 @@
+<!--
+  Generated template for the FoodPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!--Display food details based on menuID passed from FoodTypePage-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{(menus | async)?.menuName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="bg-style">
+	<div text-center>
+
+		<img src="{{(menus | async)?.photoURL}}">
+		<p style="font-weight: bold; font-size: 15px">{{(menus | async)?.menuName}}</p>
+		<div *ngIf="preOrder" style="color:red">
+			<ion-icon name="alert" ></ion-icon>
+			This is a Pre-order menu
+		</div>
+		<br><br>
+		<div>
+		  	<ion-list>
+		    	<ion-item>
+			      	<ion-label><ion-icon name="list"></ion-icon>Quantity</ion-label>
+			      	<ion-select #quantity multiple="false" interface="popover" (ionChange)="selectQuantity(quantity.value)" >
+				        <ion-option value="0" selected="true">0</ion-option>
+				        <ion-option value="1" >1</ion-option>
+				        <ion-option value="2">2</ion-option>
+				        <ion-option value="3">3</ion-option>
+				        <ion-option value="4">4</ion-option>
+				        <ion-option value="5">5</ion-option>
+				        <ion-option value="6">6</ion-option>
+				        <ion-option value="7">7</ion-option>
+				        <ion-option value="8">8</ion-option>
+				        <ion-option value="9">9</ion-option>
+				   		<ion-option value="10">10</ion-option>
+			      	</ion-select>
+		    	</ion-item>
+		 	</ion-list>
+		</div>
+		<br><br>
+		  <ion-item-group>
+		    <ion-item-divider color="light">Menu Details</ion-item-divider>
+				<ion-grid>
+				  <ion-row>
+				    <ion-col >
+				      Categories
+				    </ion-col>
+				    <ion-col>
+				      {{(menus | async)?.category}}
+				    </ion-col>
+				  </ion-row>
+				  <ion-row>
+				    <ion-col >
+				      Description
+				    </ion-col>
+				    <ion-col>
+				      {{(menus | async)?.desc}}
+				    </ion-col>
+				  </ion-row>
+				  <ion-row>
+				    <ion-col >
+				      Total Price
+				    </ion-col>
+				    <ion-col>
+				      RM  {{totalPrice}}
+				    </ion-col>
+				  </ion-row>
+				</ion-grid>
+		  </ion-item-group>		
+				<div *ngIf="preOrder">
+					  <ion-item-group>
+					    <ion-item-divider color="light">Pre-Order Details</ion-item-divider>
+							<ion-grid>
+							  <ion-row>
+							    <ion-col >
+							      Delivery Date
+							    </ion-col>
+							    <ion-col>
+							      {{(menus | async)?.date}}
+							    </ion-col>
+							  </ion-row>
+							  <ion-row>
+							    <ion-col >
+							      Delivery Time
+							    </ion-col>
+							    <ion-col>
+							      {{(menus | async)?.time}}
+							    </ion-col>
+							  </ion-row>
+							</ion-grid>
+					  </ion-item-group>							
+				</div>
+	</div>
+  <ion-fab bottom right>
+    <button ion-fab mini><ion-icon name="arrow-round-up"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab full color="primary" (click)="makeOrder()"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab full color="primary" (click)="goCart()"><ion-icon name="cart"></ion-icon></button>
+      <button ion-fab full color="primary" (click)="setFav()"><ion-icon name="star"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
+<!--
+    <ion-list>
+      <ion-item *ngFor="let menu of menus | async" (click)="makeOrder(menu.$key)">
+        {{menu.menuName}} <br>
+        RM {{menu.menuPrice}} <br>
+        <h6 style="font-weight: bold; font-size: 15px; color: black;" absolute-drag>{{menu.provider}}</h6>
+      </ion-item>
+    </ion-list>
+-->

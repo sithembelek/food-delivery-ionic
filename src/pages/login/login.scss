@@ -1,0 +1,24 @@
+page-login {
+.icon-form{
+	font-size: 25px;
+}
+#rounded {
+    width: 100%;
+    height: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 10px;
+    margin-bottom: 10px; 
+    border-color: black; 
+}
+
+
+#container {
+    position:absolute;
+    left: 0;
+    right: 0;
+    margin:0 auto;
+    top:50%;
+    transform:translateY(-50%);
+}
+}

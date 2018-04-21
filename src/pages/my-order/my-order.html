@@ -1,0 +1,168 @@
+8<!--
+  Generated template for the MyOrderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Order History</ion-title>
+  </ion-navbar>
+
+
+</ion-header>
+
+
+<ion-content padding class="bg-style">
+
+  	<ion-list>
+    	<ion-item>
+	      	<ion-label><ion-icon name="list"></ion-icon>Status</ion-label>
+	      	<ion-select #status multiple="false" interface="popover" (ionChange)="viewOrder(status.value)" >
+		        <ion-option value="all" selected="true">Display All</ion-option>
+		        <ion-option value="new" >Placed Order</ion-option>
+		        <ion-option value="paid">Paid Order</ion-option>
+		        <ion-option value="processing">Processing</ion-option>
+		        <ion-option value="delivering">Delivering</ion-option>
+		        <ion-option value="completed">Completed</ion-option>
+		        <ion-option value="cancelled">Cancelled/Refund</ion-option>
+	      	</ion-select>
+    	</ion-item>
+ 	</ion-list>
+  	<div *ngIf="viewNew">
+  		<ion-item-group>
+    		<ion-item-divider color="secondary">New Purchased Order</ion-item-divider>
+	  		<ion-card >
+	  			<ion-item *ngFor="let order of newO" >
+	  				<ion-row>
+	  					<ion-col>
+		  					<img  class="full-image" src="{{order.menuPhoto}}"/>
+		  				</ion-col>
+		  				<ion-col>
+		        			<div class="card-description" style="font-weight: bold">{{order.menuName}}</div>
+				         	<button ion-button icon-left clear small>
+				        		<ion-icon name="pricetag"></ion-icon>
+				        		<div>Total: RM {{order.totalPrice}}</div>
+				      		</button>
+				      	</ion-col>
+				    </ion-row>
+	      		</ion-item>
+			</ion-card>
+		</ion-item-group>
+	</div>
+  	<div *ngIf="viewPaid">
+  		<ion-item-group>
+    		<ion-item-divider color="secondary">Paid Order</ion-item-divider>
+	  		<ion-card >
+	  			<ion-item *ngFor="let order of paid" >
+	  				<ion-row>
+	  					<ion-col>
+		  					<img  class="full-image" src="{{order.menuPhoto}}"/>
+		  				</ion-col>
+		  				<ion-col>
+		        			<div class="card-description" style="font-weight: bold">{{order.menuName}}</div>
+				         	<button ion-button icon-left clear small>
+				        		<ion-icon name="pricetag"></ion-icon>
+				        		<div>Total: RM {{order.totalPrice}}</div>
+				      		</button>
+				      	</ion-col>
+				    </ion-row>
+	      		</ion-item>
+			</ion-card>
+		</ion-item-group>
+	</div>
+  	<div *ngIf="viewProcessing">
+  		<ion-item-group>
+    		<ion-item-divider color="secondary">Processing</ion-item-divider>
+	  		<ion-card >
+	  			<ion-item *ngFor="let order of processing" >
+	  				<ion-row>
+	  					<ion-col>
+		  					<img  class="full-image" src="{{order.menuPhoto}}"/>
+		  				</ion-col>
+		  				<ion-col>
+		        			<div class="card-description" style="font-weight: bold">{{order.menuName}}</div>
+				         	<button ion-button icon-left clear small>
+				        		<ion-icon name="pricetag"></ion-icon>
+				        		<div>Total: RM {{order.totalPrice}}</div>
+				      		</button>
+				      	</ion-col>
+				    </ion-row>
+	      		</ion-item>
+			</ion-card>
+		</ion-item-group>
+	</div>
+  	<div *ngIf="viewDelivering">
+  		<ion-item-group>
+    		<ion-item-divider color="secondary">Delivering</ion-item-divider>
+	  		<ion-card >
+	  			<ion-item *ngFor="let order of delivering" (click)="trackRunner()">
+	  				<ion-row>
+	  					<ion-col>
+		  					<img  class="full-image" src="{{order.menuPhoto}}"/>
+		  				</ion-col>
+		  				<ion-col>
+		        			<div class="card-description" style="font-weight: bold">{{order.menuName}}</div>
+				         	<button ion-button icon-left clear small>
+				        		<ion-icon name="pricetag"></ion-icon>
+				        		<div>Total: RM {{order.totalPrice}}</div>
+				      		</button>
+				      	</ion-col>
+				    </ion-row>
+				    <ion-row>
+				    	<ion-col></ion-col>
+				    	<ion-col>
+				    		<div style="align-content: right"><p>Click to track runner</p></div>
+				    	</ion-col>
+				    </ion-row>
+	      		</ion-item>
+			</ion-card>
+		</ion-item-group>
+	</div>
+  	<div *ngIf="viewCompleted">
+  		<ion-item-group>
+    		<ion-item-divider color="secondary">Completed Order</ion-item-divider>
+	  		<ion-card >
+	  			<ion-item *ngFor="let order of received" >
+	  				<ion-row>
+	  					<ion-col>
+		  					<img  class="full-image" src="{{order.menuPhoto}}"/>
+		  				</ion-col>
+		  				<ion-col>
+		        			<div class="card-description" style="font-weight: bold">{{order.menuName}}</div>
+				         	<button ion-button icon-left clear small>
+				        		<ion-icon name="pricetag"></ion-icon>
+				        		<div>Total: RM {{order.totalPrice}}</div>
+				      		</button>
+				      	</ion-col>
+				    </ion-row>
+	      		</ion-item>
+			</ion-card>
+		</ion-item-group>
+	</div>
+  	<div *ngIf="viewCancelled">
+  		<ion-item-group>
+    		<ion-item-divider color="secondary">Cancelled/Refund</ion-item-divider>
+	  		<ion-card >
+	  			<ion-item *ngFor="let order of cancelled" >
+	  				<ion-row>
+	  					<ion-col>
+		  					<img  class="full-image" src="{{order.menuPhoto}}"/>
+		  				</ion-col>
+		  				<ion-col>
+		        			<div class="card-description" style="font-weight: bold">{{order.menuName}}</div>
+				         	<button ion-button icon-left clear small>
+				        		<ion-icon name="pricetag"></ion-icon>
+				        		<div>Total: RM {{order.totalPrice}}</div>
+				      		</button>
+				      	</ion-col>
+				    </ion-row>
+	      		</ion-item>
+			</ion-card>
+		</ion-item-group>
+	</div>
+</ion-content>

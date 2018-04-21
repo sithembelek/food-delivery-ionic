@@ -1,0 +1,76 @@
+<!--
+  Generated template for the MenuDescPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+   	<ion-buttons end>
+	    <button ion-button icon-start (click)="editMenu(menu)">
+	        <ion-icon name="checkmark"></ion-icon>
+	    </button>
+	</ion-buttons> 	
+	<ion-title>{{menu.menuName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="bg-style">
+<div text-center>
+	<ion-row>
+		<ion-col>
+			<p style="font-weight: bold">Open Order: </p>
+		</ion-col>
+		<ion-col>
+		<ion-toggle [(ngModel)]="deli" (ionChange)="startDelivery()"></ion-toggle>
+		</ion-col>
+		<ion-col>
+			<p>{{(menus | async)?.status}}</p>
+		</ion-col>
+	</ion-row>	
+	<img src="{{photoMenu}}" (click)="changeImage()">
+	<ion-item>
+		<ion-label fixed>Name</ion-label>
+		<ion-input type="text" value="{{(menus | async)?.menuName}}" [(ngModel)]="menu.menuName"></ion-input> 
+	</ion-item>
+ 	<ion-item>
+ 		<ion-label fixed>Description</ion-label>
+    	<ion-textarea [(ngModel)]="menu.desc" value="{{(menus | async)?.desc}}"></ion-textarea> 
+  	</ion-item>
+ 	<ion-item>
+ 		<ion-label fixed>Category</ion-label>
+    	<ion-input type="text" value="{{(menus | async)?.category}}" disabled="true"></ion-input>  
+  	</ion-item>
+ 	<ion-item>
+ 		<ion-label fixed>Price (RM)</ion-label>
+    	<ion-input type="text" value="{{(menus | async)?.menuPrice}}"></ion-input>  
+  	</ion-item>
+  	<br><br>
+  	<div *ngIf="edited">
+	<ion-item-group>
+	  <ion-item-divider color="light">Open Order Details</ion-item-divider>
+	    <ion-item>
+	      <ion-label fixed>Stock</ion-label>
+	      <ion-input type="number" [(ngModel)]="menu.stock" value="{{(menus | async)?.stock}}"></ion-input> 
+	    </ion-item>
+	    <ion-item>
+	      <ion-label fixed>Pre-Order</ion-label>
+	      <ion-toggle [(ngModel)]="preOrder" (ionChange)="startpreOrder()" ></ion-toggle>
+	    </ion-item>
+	    <div *ngIf="pre">
+	    <ion-item>
+	      <ion-label fixed>Delivery Date</ion-label>
+	      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="date"></ion-datetime>
+	    </ion-item>
+
+	    <ion-item>
+	      <ion-label fixed>Delivery Time</ion-label>
+	      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="time"></ion-datetime>
+	    </ion-item>
+	    </div>
+	</ion-item-group>
+</div>
+</div>
+
+</ion-content>

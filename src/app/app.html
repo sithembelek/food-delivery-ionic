@@ -1,1 +1,50 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" >
+  <ion-header text-align="center">
+    <ion-toolbar color="primary" >
+    	<img class="circle-pic" alt="logo" height="150" width="150"   src="{{(profileData | async)?.photoURL}}" > 
+      	<ion-title>{{(profileData | async)?.name}}</ion-title>
+      	<button ion-button color="light" block (click)="logout()">Logout <ion-icon name="log-out"></ion-icon></button>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content >
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      	<ion-icon name="{{p.icon}}"></ion-icon>
+        {{p.title}}
+      </button>
+    </ion-list>
+    <div *ngIf="fdsp">
+    	<ion-item-divider color="secondary">Food Delivery Service Provider</ion-item-divider>
+	    <ion-list>
+	      <button menuClose ion-item *ngFor="let p of fdspPages" (click)="openPage(p)">
+	      	<ion-icon name="{{p.icon}}"></ion-icon>
+	        {{p.title}}
+	      </button>	
+        <div *ngIf="selfDelivery">
+          <button menuClose ion-item *ngFor="let p of selfDPages" (click)="openPage(p)">
+            <ion-icon name="{{p.icon}}"></ion-icon>
+            {{p.title}}
+          </button> 
+        </div>
+	    </ion-list>
+    </div>
+    <div *ngIf="runner">
+    	<ion-item-divider color="secondary">Runner </ion-item-divider>
+      <ion-item>
+        <ion-label> Runner Service</ion-label>
+        <ion-toggle [(ngModel)]="runnerActive" (ionChange)="startRunner()"></ion-toggle>
+      </ion-item>
+	    <ion-list>
+	      <button menuClose ion-item *ngFor="let p of runnerPages" (click)="openPage(p)">
+	      	<ion-icon name="{{p.icon}}"></ion-icon>
+	        {{p.title}}
+	      </button>	
+	  </ion-list>
+    </div>
+  </ion-content>
+
+</ion-menu>
+
+<!--<ion-nav [root]="rootPage"></ion-nav>-->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

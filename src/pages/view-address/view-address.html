@@ -1,0 +1,61 @@
+<!--
+  Generated template for the ViewAddressPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Delivery Address</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="bg-style">
+	<div *ngIf="default" class="bg-style">
+		<ion-item-group>
+	    	<ion-item-divider color="secondary"> Default Address</ion-item-divider>
+			    <ion-item *ngFor="let loc of defaultLoc" class="bg-style" text-wrap>
+				    <ion-card >
+			          	<div class="card-description" style="font-weight: bold; text-align: center; size: 30px">{{loc.name}}</div>
+					  	<ion-card-content>
+					    	<p>Address: {{loc.address}}</p>
+					    	<p>Latitude: {{loc.latitude}}</p>
+					    	<p>Longitude: {{loc.longitude}}</p>
+					  	</ion-card-content>
+				    </ion-card>
+			    </ion-item>
+	    </ion-item-group>
+	</div>
+	<ion-item-group class="bg-style">
+    	<ion-item-divider color="secondary"> My Addresses</ion-item-divider>
+		<ion-list class="bg-style">
+		    <ion-item *ngFor="let loc of location | async" class="bg-style" text-wrap>
+			    <ion-card >
+					<ion-fab right top>
+					    <button ion-fab mini (click)="deleteAddress(loc.$key)">
+					      <ion-icon name="trash"></ion-icon>
+					    </button>
+					</ion-fab>
+		          	<div class="card-description" style="font-weight: bold; text-align: center; size: 30px">{{loc.name}}</div>
+				  	<ion-card-content>
+				    	<p>Address: {{loc.address}}</p>
+				    	<p>Latitude: {{loc.latitude}}</p>
+				    	<p>Longitude: {{loc.longitude}}</p>
+				  	</ion-card-content>
+				  	<ion-buttons end>
+				      	<button ion-button (click)="setDefault(loc.$key)">
+				       		Set As Default
+				      	</button>
+				  	</ion-buttons>
+			    </ion-card>
+		    </ion-item>
+		</ion-list>
+    </ion-item-group>    
+
+  	<ion-fab center bottom>
+        <button ion-fab  (click)="addAddress()"><ion-icon name="add"></ion-icon></button>
+  	</ion-fab>
+</ion-content>

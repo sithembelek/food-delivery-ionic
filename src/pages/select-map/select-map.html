@@ -1,0 +1,27 @@
+<!--
+  Generated template for the SelectMapPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+  <ion-searchbar [(ngModel)]="autocomplete.query" (ionInput)="updateSearchResults()" placeholder="Search for a place"></ion-searchbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: transparent">
+    <ion-list>
+        <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+            {{ item.description }}
+        </ion-item>
+    </ion-list>
+	<div #map id="my-map" style="height: 100%"></div>
+
+</ion-content>
+	<ion-footer>
+      <button ion-button full (click)="sendLocation()" color="primary">
+        Add this Address
+      </button>		
+	</ion-footer>

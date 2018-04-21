@@ -1,6 +1,14 @@
 // http://ionicframework.com/docs/theming/
 
-
+  .bg-style {
+        background: #f5f0eb;
+    }
+.circle-pic{
+    width:130px;
+    height:130px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
